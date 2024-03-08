@@ -22,3 +22,18 @@ PRs welcome. Each checklist item should have a one-line rationale and ideally a 
 ## License
 
 CC BY 4.0
+
+## Real-World References
+
+Each checklist item links to a real incident where the pattern was exploited or nearly exploited. Some notable ones:
+
+- **Reentrancy**: Curve pool read-only reentrancy (Jul 2023, ~$70M)
+- **Oracle**: Mango Markets price manipulation (Oct 2022, $114M)
+- **Flash Loan**: Euler Finance (Mar 2023, $197M)
+- **Access Control**: Ronin Bridge (Mar 2022, $625M — compromised validator keys)
+- **Upgrades**: Wormhole (Feb 2022, $320M — uninitialized implementation)
+- **Token**: Fee-on-transfer handling failures across multiple DEX forks
+
+## Status
+
+Work in progress. Adding more items as new audit patterns emerge.
