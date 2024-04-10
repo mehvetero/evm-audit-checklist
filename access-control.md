@@ -34,3 +34,4 @@ Key checks for Move:
 - [ ] UpgradeCap policy is set appropriately (compatible vs additive vs immutable)
 - [ ] No capability is stored inside a shared object (indirect access bypass)
 - [ ] Multiple capabilities exist for different privilege levels (not one "god cap" for everything)
+
