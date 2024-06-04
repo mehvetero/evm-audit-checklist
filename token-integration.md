@@ -20,3 +20,4 @@
 - [ ] `address.call{value: amount}("")` is preferred over `transfer` or `send` — gas stipend assumptions fail with account abstraction
 - [ ] Contracts that receive ETH must have `receive()` or `fallback()` — otherwise ETH sent via `selfdestruct` is stuck
 - [ ] `msg.value` in loops — `msg.value` does not decrease per iteration; if a function processes multiple items using `msg.value`, the total check must happen once, not per item
+
