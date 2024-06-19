@@ -35,3 +35,4 @@ Key checks for Move:
 - [ ] No capability is stored inside a shared object (indirect access bypass)
 - [ ] Multiple capabilities exist for different privilege levels (not one "god cap" for everything)
 
+
