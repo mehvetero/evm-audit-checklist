@@ -28,3 +28,4 @@
 - [ ] Pyth `expo` (exponent) is negative — the actual price is `price * 10^expo`; forgetting to handle the exponent produces wildly wrong values
 - [ ] Hermes vs on-chain — Pyth Hermes is an off-chain relay; if the Hermes endpoint goes down, prices stop updating
 
+
