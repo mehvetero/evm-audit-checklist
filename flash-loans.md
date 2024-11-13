@@ -33,3 +33,4 @@ public fun repay(pool: &mut Pool, coin: Coin<SUI>, receipt: Receipt) { ... }
 The `Receipt` has no `drop` — the transaction MUST call `repay` or it fails. This is safer than EVM flash loans because the compiler enforces repayment at the type level.
 
 However, the atomic composability through PTBs (Programmable Transaction Blocks) means Move contracts face similar oracle manipulation risks even without traditional flash loans — any price manipulation + action can happen in one transaction.
+
