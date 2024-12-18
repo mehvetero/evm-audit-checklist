@@ -37,3 +37,4 @@ Each checklist item links to a real incident where the pattern was exploited or 
 ## Status
 
 Work in progress. Adding more items as new audit patterns emerge.
+
