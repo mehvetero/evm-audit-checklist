@@ -29,3 +29,4 @@
 - [ ] Hermes vs on-chain — Pyth Hermes is an off-chain relay; if the Hermes endpoint goes down, prices stop updating
 
 
+
