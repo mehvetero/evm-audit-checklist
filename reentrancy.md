@@ -24,3 +24,9 @@
 - [ ] View functions that return prices or balances are not exploitable via reentrancy into a dependent contract
 - [ ] Curve/Balancer-style LP token pricing that reads pool reserves during a swap callback — known read-only reentrancy vector
 - [ ] Any `getPrice()` or `getReserves()` used by external protocols is documented as a potential oracle manipulation surface
+
+## ERC-4626 Vault Reentrancy
+
+- [ ] `deposit()` and `redeem()` share price calculation uses `totalAssets()` which reads balances — if an ERC-777 token is used as the vault asset, `tokensReceived` callback creates a reentry point between the transfer and the share mint
+- [ ] `maxDeposit()` and `maxWithdraw()` return values can be stale during a reentrant call — do not use them as guards
+- [ ] First depositor inflation attack — attacker deposits 1 wei, donates large amount, second depositor gets 0 shares due to rounding
