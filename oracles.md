@@ -20,3 +20,10 @@
 - [ ] Flash loan → swap (move price) → interact with protocol → swap back — check if any function reads price and acts on it in the same transaction
 - [ ] Donation attack — large direct transfer to a pool to skew the reserve ratio before a price read
 - [ ] Oracle front-running — MEV bot reads a large trade, updates oracle before the protocol's price read
+
+## Pyth Network Specifics
+
+- [ ] Pyth prices have a confidence interval — high confidence interval means the price is unreliable; do not use `price.price` without checking `price.conf`
+- [ ] Pyth uses pull-based updates — the protocol must call `updatePriceFeeds()` before reading; stale data is returned if not updated
+- [ ] Pyth `expo` (exponent) is negative — the actual price is `price * 10^expo`; forgetting to handle the exponent produces wildly wrong values
+- [ ] Hermes vs on-chain — Pyth Hermes is an off-chain relay; if the Hermes endpoint goes down, prices stop updating
