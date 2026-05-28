@@ -20,3 +20,17 @@
 - [ ] `initialize()` can only be called once — verify `initializer` modifier from OpenZeppelin
 - [ ] Implementation contract has `_disableInitializers()` in constructor — prevents direct initialization of the implementation
 - [ ] `initialize()` sets all critical state (owner, fees, oracle addresses) — unset state is a backdoor
+
+## Move Capability-Based Access
+
+The EVM patterns above (onlyOwner, roles) do not apply directly to Move. In Move:
+
+- Admin authority is represented by capability objects (AdminCap, UpgradeCap)
+- Access control is enforced at the type level — the function signature requires the capability
+- No `msg.sender` equivalent — authorization is "prove you have the object"
+
+Key checks for Move:
+- [ ] AdminCap is created in `init()` and transferred to a specific address (not shared)
+- [ ] UpgradeCap policy is set appropriately (compatible vs additive vs immutable)
+- [ ] No capability is stored inside a shared object (indirect access bypass)
+- [ ] Multiple capabilities exist for different privilege levels (not one "god cap" for everything)
