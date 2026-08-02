@@ -34,7 +34,32 @@ Key checks for Move:
 - [ ] UpgradeCap policy is set appropriately (compatible vs additive vs immutable)
 - [ ] No capability is stored inside a shared object (indirect access bypass)
 - [ ] Multiple capabilities exist for different privilege levels (not one "god cap" for everything)
+- [ ] Authorization return values are asserted, not discarded — `vector::contains()` without `assert!` compiles silently in Move (see below)
 
+### The Discarded Return Value (Typus, $3.44M)
 
+Move-specific trap with no direct EVM equivalent. In Solidity, `require(condition)` is a statement that reverts — you cannot accidentally discard it. In Move, `vector::contains()` returns a `bool` with `drop` ability, so calling it without `assert!` is valid and silent:
+
+```move
+// VULNERABLE — Typus Finance, live for 11 months before exploit
+vector::contains(&whitelist, &tx_context::sender(ctx));
+// bool returned and dropped — authorization never enforced
+
+// FIXED — one keyword
+assert!(vector::contains(&whitelist, &tx_context::sender(ctx)), E_UNAUTHORIZED);
+```
+
+This is harder to spot than a missing check entirely — a reviewer sees the function name, the arguments, and the comment (`// check authority`) and assumes it works. The code reads correct. Only the compiler output is wrong, and the compiler says nothing.
+
+Move has no `#[must_use]` annotation (Rust does). Until it does, treat any `bool`-returning authorization call without `assert!` as a critical finding.
+
+## Return Value Checks (Cross-Chain Lesson)
+
+This applies to both EVM and Move:
+
+- [ ] Every external call's return value is checked — ERC-20 `transfer()` returning `false` instead of reverting is a classic (SafeERC20 handles this)
+- [ ] Calls to `ecrecover` check for `address(0)` — a malformed signature returns zero, not a revert
+- [ ] Low-level calls (`.call`, `.delegatecall`) check the boolean return — an unchecked `.call` silently fails
+- [ ] In Move: any function returning `bool` for an authorization decision must reach an `assert!` or `if`/`abort` — `drop` ability means the compiler never complains
 
 
