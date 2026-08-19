@@ -14,6 +14,7 @@ Work through each section during a review. Check items off as you verify them. N
 4. [Flash Loan Risks](flash-loans.md)
 5. [Upgrade Patterns](upgrades.md)
 6. [Token Integration](token-integration.md)
+7. [Signatures & Replay Protection](signatures.md)
 
 ## Contributing
 
@@ -33,6 +34,7 @@ Each checklist item links to a real incident where the pattern was exploited or 
 - **Access Control**: Ronin Bridge (Mar 2022, $625M — compromised validator keys)
 - **Upgrades**: Wormhole (Feb 2022, $320M — uninitialized implementation)
 - **Token**: Fee-on-transfer handling failures across multiple DEX forks
+- **Signatures**: Wintermute/Optimism 20M OP (multi-sig misconfiguration), Wormhole $320M (forged guardian signatures), permit front-running (industry-wide)
 
 ## Status
 
